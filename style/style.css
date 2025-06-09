@@ -144,7 +144,7 @@ body.dark-mode .theme-toggle-icon {
 }
 
 .cta-btn {
-  background-color: var(--nav-bg);
+  background-color: #007acc;
   color: #fff;
   padding: 0.9rem 2rem;
   border: none;
@@ -155,7 +155,7 @@ body.dark-mode .theme-toggle-icon {
 }
 
 .cta-btn:hover {
-  background-color: #1f2d4a;
+  background-color: var(--accent);
 }
 
 /* Animation */
@@ -515,5 +515,62 @@ body.dark-mode .theme-toggle-icon {
 }
 
 .send-btn:hover {
+  background-color: var(--accent);
+}
+
+/* style for contact section */
+.contact-form-section {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--bg);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.contact-form-section h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--text);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+input,
+textarea {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+button[type="submit"] {
+  margin-top: 1rem;
+  padding: 0.8rem 1.2rem;
+  background-color: #007acc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button[type="submit"]:hover {
   background-color: var(--accent);
 }
