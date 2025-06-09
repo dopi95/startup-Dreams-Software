@@ -253,3 +253,126 @@ body.dark-mode .theme-toggle-icon {
     font-size: 14px;
   }
 }
+
+/* style for products section */
+.product-carousel {
+  padding: 2rem;
+  background-color: var(--bg);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.carousel-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.carousel {
+  display: flex;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  width: 100%;
+}
+
+.card {
+  flex: 0 0 100%;
+  box-sizing: border-box;
+  background: var(--section-bg);
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 0 0.5rem;
+  transition: transform 0.3s;
+}
+
+.card h3 {
+  color: var(--text);
+}
+
+.card ul {
+  padding-left: 1.2rem;
+}
+
+.carousel-btn {
+  background: var(--nav-bg);
+  color: var(--bg);
+  border: none;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  border-radius: 50%;
+  margin: 0 0.5rem;
+  z-index: 10;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 1rem;
+    font-size: 0.95rem;
+  }
+}
+/* style for FAQS */
+.faq-section {
+  max-width: 800px;
+  margin: auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.faq-container {
+  border-top: 1px solid #ccc;
+}
+
+.faq-item {
+  border-bottom: 1px solid #ccc;
+}
+
+.faq-question {
+  width: 100%;
+  padding: 1rem;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 1.1rem;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.3s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-question:hover {
+  background: #f0f0f0;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 1rem;
+  background: #f9f9f9;
+  transition: max-height 0.4s ease;
+}
+
+.faq-answer p {
+  margin: 1rem 0;
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.faq-question.active .arrow {
+  transform: rotate(90deg);
+}

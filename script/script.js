@@ -46,3 +46,50 @@ function showContent(section) {
       .classList.toggle("active", id === section);
   });
 }
+
+let currentIndex = 0;
+
+function scrollCarousel(direction) {
+  const carousel = document.getElementById("carousel");
+  const cards = carousel.querySelectorAll(".card");
+  const cardWidth = cards[0].offsetWidth + 16; // 16px margin
+
+  currentIndex += direction;
+
+  if (currentIndex < 0) currentIndex = 0;
+  if (currentIndex >= cards.length) currentIndex = cards.length - 1;
+
+  carousel.scrollTo({
+    left: currentIndex * cardWidth,
+    behavior: "smooth",
+  });
+}
+
+const questions = document.querySelectorAll(".faq-question");
+
+questions.forEach((q) => {
+  q.addEventListener("click", () => {
+    const openQuestion = document.querySelector(".faq-question.active");
+    const openAnswer = document.querySelector(
+      '.faq-answer[style*="max-height"]'
+    );
+
+    // Close previously opened answer
+    if (openAnswer && openAnswer !== q.nextElementSibling) {
+      openAnswer.style.maxHeight = null;
+      openQuestion?.classList.remove("active");
+    }
+
+    const answer = q.nextElementSibling;
+    const isOpen = answer.style.maxHeight;
+
+    // Toggle current answer
+    if (isOpen) {
+      answer.style.maxHeight = null;
+      q.classList.remove("active");
+    } else {
+      answer.style.maxHeight = answer.scrollHeight + "px";
+      q.classList.add("active");
+    }
+  });
+});

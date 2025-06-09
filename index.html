@@ -23,7 +23,8 @@
       <ul class="nav-links" id="nav-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="#features">Features</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#FAQS">FAQS</a></li>
         <li><a href="#team">Team</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -97,6 +98,86 @@
         </p>
       </div>
     </div>
+
+    <!-- product section -->
+    <section class="product-carousel" id="services">
+      <h2 class="carousel-title">Our Services</h2>
+      <div class="carousel-wrapper">
+        <button class="carousel-btn left" onclick="scrollCarousel(-1)">&#8592;</button>
+        
+        <div class="carousel" id="carousel">
+          <!-- Product 1 -->
+          <div class="card">
+            <h3>Website Development</h3>
+            <p>We design and develop responsive, SEO-friendly websites tailored for businesses, schools, and professionals.</p>
+            <ul>
+              <li>Responsive & mobile-friendly</li>
+              <li>Optimized for Google search</li>
+              <li>Custom design for each client</li>
+            </ul>
+          </div>
+    
+          <!-- Product 2 -->
+          <div class="card">
+            <h3>Mobile App Development</h3>
+            <p>We build apps that solve local problems with clean UI and reliable performance.</p>
+            <ul>
+              <li>User-friendly design</li>
+              <li>Efficient performance</li>
+              <li>Solving real-world problems</li>
+            </ul>
+          </div>
+    
+          <!-- Product 3 -->
+          <div class="card">
+            <h3>Custom Software</h3>
+            <p>We create tailored desktop or web applications based on specific client needs.</p>
+            <ul>
+              <li>Desktop & web support</li>
+              <li>Built to client specifications</li>
+              <li>Reliable and scalable</li>
+            </ul>
+          </div>
+        </div>
+    
+        <button class="carousel-btn right" onclick="scrollCarousel(1)">&#8594;</button>
+      </div>
+
+
+      <!-- FAQS Section -->
+      <section class="faq-section" id="FAQS">
+        <h2>Frequently Asked Questions</h2> <br>
+        <div class="faq-container">
+          <div class="faq-item">
+            <button class="faq-question">
+              What services does Dreams Software offer?
+              <span class="arrow">&#9654;</span>
+            </button>
+            <div class="faq-answer">
+              <p>We provide website development, mobile app development, and custom software tailored to your needs.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              How can I request a project?
+              <span class="arrow">&#9654;</span>
+            </button>
+            <div class="faq-answer">
+              <p>You can contact us through our website or social media to discuss your project needs and get a free consultation.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              Do you work with schools and hospitals?
+              <span class="arrow">&#9654;</span>
+            </button>
+            <div class="faq-answer">
+              <p>Yes! Our team specializes in building solutions for local schools, hospitals, and other institutions still using manual systems.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
 
     <script src="script/script.js"></script>
   </body>
