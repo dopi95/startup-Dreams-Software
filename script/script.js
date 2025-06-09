@@ -117,54 +117,62 @@ cards.forEach((card) => {
   observer.observe(card);
 });
 
-const chatDisplay = document.getElementById("chatDisplay");
-const chatInput = document.getElementById("chatInput");
-const sendBtn = document.getElementById("sendBtn");
-const sampleQuestions = document.querySelectorAll(".sample-question");
+const messages = [
+  {
+    role: "system",
+    content: `
+You are a friendly and helpful chatbot for AddisWay, a web startup that helps people in Addis Ababa find taxi routes, check fare prices, and locate transfer points.
 
-// 💬 Bio for Dreams Software
-const systemMessage = `You are a helpful assistant for Dreams Software, a technology company based in Ethiopia. 
-Dreams Software is founded by Elyas Yenealem and is focused on building modern websites, apps, and digital solutions 
-for businesses and individuals. The company values innovation, reliability, and user-friendliness. 
-Dreams Software helps clients build professional online platforms, manage content, and grow digitally. 
-Contact: dreamssoftware.et@gmail.com | Phone: +251 973 545462.`;
+Greet users nicely. You can answer these common questions:
+- Who founded AddisWay (Tenbite Daniel and his friends)
+- What problems it solves (finding taxi routes, avoiding overpaying, knowing where to transfer)
+- What services it offers (Route Finder, Fare Checker, Taxi Stop Locator)
+- How someone can support or contact the team (via the contact section or social media)
+- The startup’s vision (to make transportation fair, easy, and stress-free in Addis Ababa)
 
-const puter = puterAI.chat({
-  model: "gpt-4",
-  messages: [{ role: "system", content: systemMessage }],
-  onMessage: (message) => {
-    appendMessage(message.content, "bot");
+If users ask something off-topic, kindly tell them: “I'm here to help with anything about AddisWay.”
+
+Always use short, simple sentences and speak like you're helping a local user. Be friendly, calm, and respectful.
+`,
   },
-});
+];
 
-function appendMessage(content, role) {
-  const bubble = document.createElement("div");
-  bubble.classList.add("chat-bubble", role);
-  bubble.textContent = content;
-  chatDisplay.appendChild(bubble);
-  chatDisplay.scrollTop = chatDisplay.scrollHeight;
-}
-
-function sendMessage() {
-  const message = chatInput.value.trim();
-  if (!message) {
-    appendMessage("⚠️ Please enter a question before sending.", "bot");
-    return;
+// function to add message
+function addMessage(msg, isUser) {
+  const messagesDiv = document.getElementById("messages");
+  const messageDiv = document.createElement("div");
+  messageDiv.classList.add("message");
+  if (isUser) {
+    messageDiv.classList.add("user-message");
   }
-
-  appendMessage(message, "user");
-  puter.send(message);
-  chatInput.value = "";
+  messageDiv.textContent = msg;
+  messagesDiv.appendChild(messageDiv);
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
 }
 
-sendBtn.addEventListener("click", sendMessage);
-chatInput.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") sendMessage();
-});
+// function to send message
+function sendMessage() {
+  const input = document.getElementById("input-message");
+  const message = input.value.trim();
+  if (message) {
+    addMessage(message, true);
+    input.value = "";
+    messages.push({ content: message, role: "user" });
 
-sampleQuestions.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    chatInput.value = btn.textContent;
-    sendMessage();
-  });
-});
+    if (typeof puter !== "undefined") {
+      puter.ai
+        .chat(messages)
+        .then((response) => {
+          const reply = response.message?.content || "⚠️ No response from AI.";
+          addMessage(reply, false);
+          messages.push({ content: reply, role: "assistant" });
+        })
+        .catch((error) => {
+          console.error("AI response error:", error);
+          addMessage("⚠️ Error talking to AI.", false);
+        });
+    } else {
+      addMessage("⚠️ Puter SDK not loaded.", false);
+    }
+  }
+}
