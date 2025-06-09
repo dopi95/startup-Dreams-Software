@@ -4,8 +4,100 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dreams Software</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style/style.css" />
   </head>
   <body>
-    <h1>This is Dreams Software</h1>
+    <!-- the navigation part -->
+    <nav class="navbar">
+      <div class="nav-brand">Dreams Software</div>
+
+      <div class="theme-toggle-icon" id="theme-toggle-icon">
+        <i class="fas fa-moon" id="theme-icon"></i>
+      </div>
+
+      <button class="hamburger" id="hamburger">&#9776;</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <!-- hero section -->
+
+    <section class="hero" id="home">
+      <div class="hero-overlay">
+        <div class="hero-content">
+          <h1>Dreams Software</h1>
+          <p>Building Tommorrow's Software Solutions Today</p>
+          <a href="#contact" class="cta-btn">Get Started</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- about section -->
+    <div class="about-container" id="about">
+      <div class="about-header">
+        <img src="Assets/dreams-background.jpg" alt="Dreams Software Logo" />
+        <h2>About Us</h2>
+      </div>
+
+      <div class="toggle-buttons">
+        <button id="originBtn" class="active" onclick="showContent('origin')">
+          Origin Story
+        </button>
+        <button id="missionBtn" onclick="showContent('mission')">
+          Mission
+        </button>
+        <button id="impactBtn" onclick="showContent('impact')">
+          Community Impact
+        </button>
+      </div>
+
+      <div id="origin" class="about-content">
+        <p>
+          the idea was born when Elyas Yenealem noticed that many local schools,
+          hospitals and any other companies were still using manual systems to
+          manage their daily tasks. As a passionate developer and student, i
+          decided to create tools that solve real community problems through
+          technology. I brought together a team of classmates and friends who
+          believed in the power of local innovation. We are a group of 4
+          including me. There name is Bereket Eshete, Tenbite Daniel and Dagim
+          Sisay. Together we launched Dreams Software to provide accessible,
+          customized and practical software solution.
+        </p>
+      </div>
+
+      <div id="mission" class="about-content" style="display: none">
+        <p>
+          At Dreams Software, our mission is to empower local organizations by
+          replacing outdated manual systems with smart, user-friendly digital
+          tools. We strive to bridge the technology gap in Ethiopia by designing
+          tailored software that enhances efficiency, improves decision-making,
+          and creates meaningful impact for our clients. Through innovation and
+          teamwork, we are committed to driving sustainable digital
+          transformation from the grassroots level.
+        </p>
+      </div>
+
+      <div id="impact" class="about-content" style="display: none">
+        <p>
+          Dreams Software actively contributes to the local tech ecosystem by
+          developing solutions that are not only functional but truly beneficial
+          to underserved communities. From creating management systems for
+          schools and clinics to offering affordable digital tools for small
+          businesses, we focus on solving real problems that matter. We also
+          mentor young students interested in tech, promote knowledge sharing,
+          and encourage innovation as a pathway to social and economic growth.
+        </p>
+      </div>
+    </div>
+
+    <script src="script/script.js"></script>
   </body>
 </html>
