@@ -118,3 +118,8 @@ form.addEventListener("submit", function (e) {
   alert("Thanks for reaching out, " + name + "! We'll get back to you soon.");
   form.reset();
 });
+
+let count = localStorage.getItem("visitCount");
+count = count ? parseInt(count) + 1 : 1;
+localStorage.setItem("visitCount", count);
+document.getElementById("visit-count").textContent = `Site Visits: ${count}`;

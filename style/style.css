@@ -574,3 +574,79 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: var(--accent);
 }
+/* style for footer */
+
+.footer-column h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li a {
+  color: #ccc;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.5rem;
+  transition: 0.3s;
+}
+
+.footer-column ul li a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.social-icons a {
+  color: #ccc;
+  font-size: 1.5rem;
+  margin-right: 10px;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #fff;
+}
+
+.visit-counter {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #bbb;
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+}
+
+.site-footer {
+  background: #141e30;
+  color: #fff;
+  padding: 2rem 0;
+  margin: 0;
+  width: 100%;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+  text-align: left;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 1rem;
+}
+
+.footer-column {
+  flex: 1 1 250px;
+}
