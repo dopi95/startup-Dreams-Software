@@ -56,7 +56,7 @@ body {
 .hamburger {
   display: none;
   font-size: 1.8rem;
-  background: none;
+  background: var(--nav-bg);
   border: none;
   color: var(--nav-text);
   cursor: pointer;
@@ -82,22 +82,6 @@ body {
   .nav-links.show {
     display: flex;
   }
-}
-
-/* theme icon */
-.theme-toggle-icon {
-  font-size: 1.4rem;
-  cursor: pointer;
-  margin-right: 20px;
-  color: var(--nav-text);
-  transition: color 0.3s ease;
-}
-
-body.dark-mode .theme-toggle-icon {
-  color: var(--nav-text);
-}
-.theme-toggle-icon:hover {
-  color: var(--accent);
 }
 
 /* style hero section*/
@@ -433,89 +417,132 @@ body.dark-mode .theme-toggle-icon {
 }
 
 /* style for chat bot */
-.chatbot-container {
-  width: 100%;
-  max-width: 400px;
-  height: 500px;
-  margin: 2rem auto;
-  border: 1px solid #ccc;
-  border-radius: 12px;
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f2f5f9;
+}
+
+.container {
   display: flex;
   flex-direction: column;
-  font-family: "Segoe UI", sans-serif;
-  background: #f9f9f9;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  padding: 20px;
+}
+
+.brand-strip {
+  display: flex;
+  gap: 20px;
+  background-color: #1d3557;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95em;
+  margin-bottom: 20px;
+}
+
+.chatbot-container {
+  background: #fff;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
 .chat-header {
-  background-color: #141e30;
+  background-color: #1d3557;
   color: white;
-  padding: 1rem;
-  font-weight: bold;
+  padding: 15px;
+  font-size: 1.2em;
   text-align: center;
 }
 
+.chat-instruction {
+  padding: 10px;
+  text-align: center;
+  font-size: 0.9em;
+  color: #555;
+  background-color: #f0f4f8;
+}
+
 .chat-display {
-  flex: 1;
-  padding: 1rem;
+  padding: 15px;
+  height: 300px;
   overflow-y: auto;
+  background: #f7fbff;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
-  background: #fff;
 }
 
 .chat-bubble {
-  padding: 0.7rem 1rem;
-  border-radius: 18px;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  border-radius: 16px;
   max-width: 80%;
-  font-size: 0.95rem;
   line-height: 1.4;
 }
 
 .chat-bubble.bot {
-  background-color: #e0e0e0;
+  background: #dceefb;
+  color: #1d3557;
   align-self: flex-start;
-  color: var(--text);
 }
 
 .chat-bubble.user {
-  background-color: #007acc;
+  background: #1d3557;
   color: white;
   align-self: flex-end;
 }
 
 .chat-input-area {
   display: flex;
-  border-top: 1px solid #ccc;
-  padding: 0.8rem;
-  background: var(--bg);
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  gap: 10px;
 }
 
-.chat-input {
+.chat-input-area input {
   flex: 1;
-  padding: 0.6rem;
+  padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 20px;
-  outline: none;
-  font-size: 1rem;
+  border-radius: 8px;
 }
 
-.send-btn {
-  margin-left: 0.5rem;
-  padding: 0.6rem 1rem;
-  background-color: #007acc;
-  color: #fff;
+.chat-input-area button {
+  padding: 10px 15px;
   border: none;
-  border-radius: 20px;
+  background: #1d3557;
+  color: white;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s;
 }
 
-.send-btn:hover {
-  background-color: var(--accent);
+.chat-input-area button:hover {
+  background: #13213a;
+}
+
+.sample-questions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px;
+  background-color: #f0f4f8;
+  justify-content: center;
+}
+
+.sample-question {
+  background: #e0ecf9;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85em;
+  cursor: pointer;
+}
+
+.sample-question:hover {
+  background: #cbdff1;
 }
 
 /* style for contact section */
@@ -649,4 +676,77 @@ button[type="submit"]:hover {
 
 .footer-column {
   flex: 1 1 250px;
+}
+
+/* style testimonals */
+
+.testimonials {
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+.testimonials h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.testimonial-card {
+  background-color: #fff;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-left: 5px solid #4f46e5;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  text-align: left;
+  transition: transform 0.3s ease;
+}
+
+.testimonial-card.green {
+  border-left-color: #10b981;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+}
+
+.client-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.client-photo {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #111;
+  margin: 0;
+}
+
+.role {
+  font-size: 0.9rem;
+  color: #777;
+  margin: 2px 0;
+}
+
+.stars {
+  color: #fbbf24; /* Amber star color */
+  font-size: 1.1rem;
+}
+
+.quote {
+  font-size: 1rem;
+  font-style: italic;
+  color: #444;
+  margin-top: 0.5rem;
 }

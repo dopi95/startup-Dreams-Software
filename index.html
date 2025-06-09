@@ -8,6 +8,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+    <script src="https://js.puter.com/v2/"></script>
     <link rel="stylesheet" href="style/style.css" />
   </head>
   <body>
@@ -16,7 +17,6 @@
       <div class="nav-brand">Dreams Software</div>
 
       <div class="theme-toggle-icon" id="theme-toggle-icon">
-        <i class="fas fa-moon" id="theme-icon"></i>
       </div>
 
       <button class="hamburger" id="hamburger">&#9776;</button>
@@ -141,8 +141,36 @@
         </div>
     
         <button class="carousel-btn right" onclick="scrollCarousel(1)">&#8594;</button>
-      </div>
+      </div> <br> <br>
 
+      <!-- testimonals section -->
+      <section class="testimonials" id="testimonals">
+        <h2>⭐ What Our Clients Say</h2>
+    
+        <div class="testimonial-card">
+          <div class="client-info">
+            <img src="Assets/beki.jpg" alt="Yonas Nibret" class="client-photo">
+            <div>
+              <p class="name">Yonas Nibret</p>
+              <p class="role">Co-Founder, Blue Light Academy</p>
+              <div class="stars">⭐⭐⭐⭐⭐</div>
+            </div>
+          </div>
+          <p class="quote">“Dreams Software created a full mobile and web app for our school in under 3 weeks — now parents and teachers stay connected.”</p>
+        </div>
+    
+        <div class="testimonial-card green">
+          <div class="client-info">
+            <img src="Assets/mule.JPG" alt="Mulugeta Damtew" class="client-photo">
+            <div>
+              <p class="name">Mulugeta Damtew</p>
+              <p class="role">Marketing Manager, Ghion Homes</p>
+              <div class="stars">⭐⭐⭐⭐</div>
+            </div>
+          </div>
+          <p class="quote">“Thanks to Dreams Software, our real estate listings now reach both local and diaspora clients with one powerful app.”</p>
+        </div>
+      </section>
 
       <!-- FAQS Section -->
       <section class="faq-section" id="FAQS">
@@ -211,17 +239,29 @@
 
       <!-- chat bot section -->
       
-      <section class="chatbot-container">
-        <div class="chat-header">💬 Dreams Bot</div>
-        <div class="chat-display">
-          <div class="chat-bubble bot">Hi! How can I help you today?</div>
-          <!-- More chat bubbles will appear here -->
+      <div class="container">
+        <div class="brand-strip">
+          <span>Innovative</span>
+          <span>Reliable</span>
+          <span>User-Friendly</span>
         </div>
-        <div class="chat-input-area">
-          <input type="text" placeholder="Type your message..." class="chat-input" />
-          <button class="send-btn">Send</button>
-        </div>
-      </section>
+    
+        <section class="chatbot-container">
+          <div class="chat-header">💬 Ask Dreams Software</div>
+          <p class="chat-instruction">Ask us anything about our software, team, or mission!</p>
+    
+          <div class="chat-display" id="chatDisplay">
+            <div class="chat-bubble bot">👋 Hi there! I'm the Dreams Software assistant. How can I help?</div>
+          </div>
+    
+          <div class="chat-input-area">
+            <input type="text" id="chatInput" placeholder="Type your message..." />
+            <button id="sendBtn">Send</button>
+          </div>
+    
+          
+        </section>
+      </div>
       
       <!-- contact section -->
       <section class="contact-form-section">
@@ -248,8 +288,11 @@
       <div class="footer-column">
         <h3>Quick Links</h3>
         <ul>
+          <li><a href="#home">Home</a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="#products">Products</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#testimonals">Testimonals</a></li>
+          <li><a href="#FAQS">FAQS</a></li>
           <li><a href="#team">Team</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>

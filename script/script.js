@@ -1,7 +1,6 @@
 const hamburger = document.getElementById("hamburger");
 const navLinks = document.getElementById("nav-links");
 const themeToggleIcon = document.getElementById("theme-toggle-icon");
-const themeIcon = document.getElementById("theme-icon");
 
 // Show/hide mobile menu
 hamburger.addEventListener("click", () => {
@@ -9,32 +8,6 @@ hamburger.addEventListener("click", () => {
 });
 
 // Set icon based on theme
-function updateThemeIcon(theme) {
-  if (theme === "dark") {
-    themeIcon.classList.remove("fa-moon");
-    themeIcon.classList.add("fa-sun");
-  } else {
-    themeIcon.classList.remove("fa-sun");
-    themeIcon.classList.add("fa-moon");
-  }
-}
-
-// Apply saved theme on load
-window.addEventListener("DOMContentLoaded", () => {
-  const savedTheme = localStorage.getItem("theme") || "light";
-  if (savedTheme === "dark") {
-    document.body.classList.add("dark-mode");
-  }
-  updateThemeIcon(savedTheme);
-});
-
-// Toggle theme and update icon/localStorage
-themeToggleIcon.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-  const isDark = document.body.classList.contains("dark-mode");
-  localStorage.setItem("theme", isDark ? "dark" : "light");
-  updateThemeIcon(isDark ? "dark" : "light");
-});
 
 function showContent(section) {
   const sections = ["origin", "mission", "impact"];
@@ -123,3 +96,75 @@ let count = localStorage.getItem("visitCount");
 count = count ? parseInt(count) + 1 : 1;
 localStorage.setItem("visitCount", count);
 document.getElementById("visit-count").textContent = `Site Visits: ${count}`;
+
+// Optional: Animate cards on scroll using IntersectionObserver
+const cards = document.querySelectorAll(".testimonial-card");
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  },
+  {
+    threshold: 0.3,
+  }
+);
+
+cards.forEach((card) => {
+  observer.observe(card);
+});
+
+const chatDisplay = document.getElementById("chatDisplay");
+const chatInput = document.getElementById("chatInput");
+const sendBtn = document.getElementById("sendBtn");
+const sampleQuestions = document.querySelectorAll(".sample-question");
+
+// 💬 Bio for Dreams Software
+const systemMessage = `You are a helpful assistant for Dreams Software, a technology company based in Ethiopia. 
+Dreams Software is founded by Elyas Yenealem and is focused on building modern websites, apps, and digital solutions 
+for businesses and individuals. The company values innovation, reliability, and user-friendliness. 
+Dreams Software helps clients build professional online platforms, manage content, and grow digitally. 
+Contact: dreamssoftware.et@gmail.com | Phone: +251 973 545462.`;
+
+const puter = puterAI.chat({
+  model: "gpt-4",
+  messages: [{ role: "system", content: systemMessage }],
+  onMessage: (message) => {
+    appendMessage(message.content, "bot");
+  },
+});
+
+function appendMessage(content, role) {
+  const bubble = document.createElement("div");
+  bubble.classList.add("chat-bubble", role);
+  bubble.textContent = content;
+  chatDisplay.appendChild(bubble);
+  chatDisplay.scrollTop = chatDisplay.scrollHeight;
+}
+
+function sendMessage() {
+  const message = chatInput.value.trim();
+  if (!message) {
+    appendMessage("⚠️ Please enter a question before sending.", "bot");
+    return;
+  }
+
+  appendMessage(message, "user");
+  puter.send(message);
+  chatInput.value = "";
+}
+
+sendBtn.addEventListener("click", sendMessage);
+chatInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") sendMessage();
+});
+
+sampleQuestions.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    chatInput.value = btn.textContent;
+    sendMessage();
+  });
+});
