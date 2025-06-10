@@ -16,9 +16,6 @@
     <nav class="navbar">
       <div class="nav-brand">Dreams Software</div>
 
-      <div class="theme-toggle-icon" id="theme-toggle-icon">
-      </div>
-
       <button class="hamburger" id="hamburger">&#9776;</button>
       <ul class="nav-links" id="nav-links">
         <li><a href="#home">Home</a></li>
@@ -242,6 +239,7 @@
       
       
       <!-- contact section -->
+
       <section class="contact-form-section">
         <h2 id="contact">Contact Us</h2>
         <form id="contactForm" novalidate>
@@ -260,7 +258,17 @@
           <button type="submit">Send Message</button>
         </form>
       </section>
+
+      <!-- chatbot section -->
       <section id="chatbot">
+        <header id="chat-header">
+          <!-- Chatbot icon SVG -->
+          <img src="https://cdn-icons-png.flaticon.com/512/4712/4712056.png" alt="Chatbot Icon" />
+          Dreams Software AI
+        </header>
+        <div id="chat-subtitle" style="padding: 8px 20px 0 20px; color: black;">
+          What can I help you?
+        </div>
         <div id="chat-container">
           <div id="messages"></div>
           <div id="chat-input">
@@ -268,6 +276,7 @@
               type="text"
               id="input-message"
               placeholder="Type a message..."
+              onkeydown="if(event.key === 'Enter'){ sendMessage(); }"
             />
             <button onclick="sendMessage()">Send</button>
           </div>

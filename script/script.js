@@ -121,58 +121,94 @@ const messages = [
   {
     role: "system",
     content: `
-You are a friendly and helpful chatbot for AddisWay, a web startup that helps people in Addis Ababa find taxi routes, check fare prices, and locate transfer points.
+You are an assistant working for Dreams Software — a passionate Ethiopian tech startup founded by Elyas Yenealem. The company was born from the realization that many local schools, hospitals, and companies still rely on manual systems. Elyas, a student and developer, brought together classmates who believed in solving community problems through technology. The core team includes Elyas Yenealem (Founder & Full Stack Developer), Dagim Sisay (UI/UX Designer), Bereket Eshete, and Tenbite Daniel.
 
-Greet users nicely. You can answer these common questions:
-- Who founded AddisWay (Tenbite Daniel and his friends)
-- What problems it solves (finding taxi routes, avoiding overpaying, knowing where to transfer)
-- What services it offers (Route Finder, Fare Checker, Taxi Stop Locator)
-- How someone can support or contact the team (via the contact section or social media)
-- The startup’s vision (to make transportation fair, easy, and stress-free in Addis Ababa)
+Mission: To empower Ethiopian businesses and institutions by building modern, accessible, and affordable software solutions across all platforms.
 
-If users ask something off-topic, kindly tell them: “I'm here to help with anything about AddisWay.”
+Vision: We envision a future where every local business, school, and startup in Ethiopia can launch and grow with the help of scalable digital tools — no matter the device or platform.
 
-Always use short, simple sentences and speak like you're helping a local user. Be friendly, calm, and respectful.
+Startup Goals:
+- Develop 10+ fully functional cross-platform mobile apps.
+- Partner with more local companies/startups to digitize services.
+- Hire and train junior developers to scale the team.
+Who Can Join:
+- Local entrepreneurs and startup founders.
+- Government IT and innovation departments.
+- Educational institutions and NGOs.
+
+🛠 Products & Services:
+1. Website Development – Responsive, SEO-friendly websites for businesses, schools, and professionals.
+2. Mobile App Development – Reliable, user-friendly mobile apps that solve local problems.
+3. Custom Software Solutions – Tailored desktop/web applications based on specific client needs.
+ Key Features:
+- Responsive Design (HTML, CSS, JavaScript): Ensures websites work beautifully across all devices.
+- Offline Access (Flutter, React Native + local DB): Saves clients money and time by enabling multi-platform functionality with offline support.
+
+Testimonials:
+- “Dreams Software created a full mobile and web app for our school in under 3 weeks — now parents and teachers stay connected.” – Yonas Nibret, Co-Founder, Blue Light Academy
+- “Thanks to Dreams Software, our real estate listing now reaches both local and diaspora clients with one powerful app.” – Mulugeta Damtew, Marketing Manager, Ghion Homes
+
+Team:
+- Elyas Yenealem – Founder & Lead Developer (Full Stack, System Design, Technical Lead)
+- Dagim Sisay – UI/UX Designer (Mobile-first interfaces, Smooth UX)
+- Bereket Eshete – Team Member
+- Tenbite Daniel – Team Member
+
+Please answer questions clearly, concisely, and in a friendly tone as Dreams Software's virtual assistant.
 `,
   },
 ];
 
-// function to add message
-function addMessage(msg, isUser) {
+// Function to add messages to chat window
+function addMessage(text, isUser) {
   const messagesDiv = document.getElementById("messages");
-  const messageDiv = document.createElement("div");
-  messageDiv.classList.add("message");
+  const messageElem = document.createElement("div");
+  messageElem.textContent = text;
+  messageElem.style.padding = "8px 12px";
+  messageElem.style.margin = "6px 0";
+  messageElem.style.borderRadius = "12px";
+  messageElem.style.maxWidth = "75%";
+  messageElem.style.wordWrap = "break-word";
+  messageElem.style.whiteSpace = "pre-wrap";
+
   if (isUser) {
-    messageDiv.classList.add("user-message");
+    messageElem.style.backgroundColor = "#007bff";
+    messageElem.style.color = "white";
+    messageElem.style.alignSelf = "flex-end";
+  } else {
+    messageElem.style.backgroundColor = "#e1e1e1";
+    messageElem.style.color = "#333";
+    messageElem.style.alignSelf = "flex-start";
   }
-  messageDiv.textContent = msg;
-  messagesDiv.appendChild(messageDiv);
+
+  messagesDiv.appendChild(messageElem);
   messagesDiv.scrollTop = messagesDiv.scrollHeight;
 }
 
-// function to send message
 function sendMessage() {
   const input = document.getElementById("input-message");
   const message = input.value.trim();
-  if (message) {
-    addMessage(message, true);
-    input.value = "";
-    messages.push({ content: message, role: "user" });
+  if (!message) return;
 
-    if (typeof puter !== "undefined") {
-      puter.ai
-        .chat(messages)
-        .then((response) => {
-          const reply = response.message?.content || "⚠️ No response from AI.";
-          addMessage(reply, false);
-          messages.push({ content: reply, role: "assistant" });
-        })
-        .catch((error) => {
-          console.error("AI response error:", error);
-          addMessage("⚠️ Error talking to AI.", false);
-        });
-    } else {
-      addMessage("⚠️ Puter SDK not loaded.", false);
-    }
+  addMessage(message, true); // Show user message
+  input.value = ""; // Clear input
+
+  messages.push({ content: message, role: "user" }); // Add to chat history
+
+  if (typeof puter !== "undefined" && puter.ai) {
+    puter.ai
+      .chat(messages)
+      .then((response) => {
+        const reply =
+          response?.message?.content?.trim() || "⚠️ No response from AI.";
+        addMessage(reply, false); // Show AI reply
+        messages.push({ content: reply, role: "assistant" });
+      })
+      .catch((error) => {
+        console.error("AI response error:", error);
+        addMessage("⚠️ Error talking to AI.", false);
+      });
+  } else {
+    addMessage("⚠️ Puter SDK not loaded or unavailable.", false);
   }
 }
